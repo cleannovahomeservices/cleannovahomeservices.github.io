@@ -5,31 +5,617 @@
   <title>CleanNova Home Services | Limpiezas a fondo en provincia de Barcelona</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Limpiezas a fondo profesionales en toda la provincia de Barcelona. Servicios desde 120 € por vivienda. Pide tu presupuesto sin compromiso." />
-
-  <!-- SEO básico -->
-  <meta name="robots" content="index,follow" />
-  <meta name="author" content="CleanNova Home Services" />
-
-  <!-- Open Graph / compartir -->
-  <meta property="og:title" content="CleanNova Home Services | Limpiezas a fondo en provincia de Barcelona" />
-  <meta property="og:description" content="Especialistas en limpiezas a fondo completas: mudanzas, fin de obra, cambio de inquilino. Provincia de Barcelona." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tudominio.com" />
-  <meta property="og:image" content="https://tudominio.com/logo-cleannova.png" />
-
-  <!-- Favicon y fuentes -->
-  <link rel="icon" type="image/png" href="logo-cleannova.png" />
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #1f6feb;
+      --primary-dark: #174fb0;
+      --accent: #22c55e;
+      --bg: #f5f7fb;
+      --text: #0f172a;
+      --muted: #6b7280;
+      --card-bg: #ffffff;
+      --radius-lg: 18px;
+      --shadow-soft: 0 14px 30px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout general */
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(245, 247, 251, 0.96);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 1rem;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: radial-gradient(circle at 20% 20%, #ffffff 0, #dbeafe 40%, #1f6feb 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-icon::before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      background: #0f172a;
+      opacity: 0.1;
+      transform: rotate(20deg);
+    }
+
+    .logo-icon span {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f172a;
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .logo-main {
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .logo-sub {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.4rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.55rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #ffffff;
+      box-shadow: 0 10px 24px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.6);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      background: transparent;
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: #ffffff;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      border: 1px dashed rgba(148, 163, 184, 0.9);
+      background: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      background: #ffffff;
+    }
+
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 3.5rem 0 3rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      color: #166534;
+      font-size: 0.8rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin-bottom: 0.7rem;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero-text {
+      font-size: 0.98rem;
+      color: var(--muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .hero-meta strong {
+      color: var(--text);
+    }
+
+    .hero-card {
+      background: radial-gradient(circle at top left, #eff6ff 0, #e0f2fe 40%, #e5e7eb 100%);
+      border-radius: 26px;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero-card h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card-text {
+      font-size: 0.9rem;
+      color: #334155;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-list {
+      list-style: none;
+      font-size: 0.88rem;
+      color: #334155;
+      margin-bottom: 1rem;
+    }
+
+    .hero-list li {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-list li::before {
+      content: "•";
+      color: var(--primary);
+      margin-top: 0.1rem;
+    }
+
+    .hero-price {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .hero-price-main {
+      font-size: 1.3rem;
+      font-weight: 700;
+    }
+
+    .hero-price-note {
+      font-size: 0.8rem;
+      color: #475569;
+    }
+
+    /* Secciones genéricas */
+
+    section {
+      padding: 3rem 0;
+    }
+
+    .section-alt {
+      background: #e5ebf7;
+    }
+
+    .section-header {
+      max-width: 640px;
+      margin: 0 auto 2rem;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      font-size: 1.7rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-header p {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    /* Grid utils */
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    /* Cards */
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 1.2rem 1.3rem;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+
+    /* Pricing */
+
+    .pricing {
+      max-width: 960px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 1.8rem;
+    }
+
+    .pricing-text {
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .pricing-text h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .pricing-text ul {
+      list-style: disc;
+      margin-left: 1.2rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .pricing-card {
+      background: #0f172a;
+      color: #e5e7eb;
+      border-radius: 22px;
+      padding: 1.5rem 1.6rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .chip {
+      display: inline-flex;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .pricing-main {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+
+    .pricing-sub {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      margin-bottom: 0.8rem;
+    }
+
+    .pricing-list {
+      list-style: none;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .pricing-list li {
+      display: flex;
+      gap: 0.45rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .pricing-list li::before {
+      content: "✔";
+      font-size: 0.8rem;
+      color: #22c55e;
+      margin-top: 0.05rem;
+    }
+
+    /* Zonas */
+
+    .zones-list {
+      list-style: none;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .zones-list li {
+      margin-bottom: 0.25rem;
+    }
+
+    .zones-note {
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-top: 1.2rem;
+      text-align: center;
+    }
+
+    /* Contacto */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .contact-box {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 10px 20px rgba(15, 23, 42, 0.04);
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-box p + p {
+      margin-top: 0.35rem;
+    }
+
+    .contact-box a {
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    .contact-form {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 1.2rem 1.3rem;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .form-row {
+      display: flex;
+      gap: 0.9rem;
+    }
+
+    .form-group {
+      flex: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      padding: 0.45rem 0.55rem;
+      font-family: inherit;
+      font-size: 0.88rem;
+      outline: none;
+      background: #f9fafb;
+      transition: border 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.2);
+      background: #ffffff;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    /* Footer */
+
+    .footer {
+      padding: 1.6rem 0;
+      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      background: #eef2ff;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 1.5rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .pricing-grid,
+      .grid-3,
+      .grid-2,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0.4rem 0;
+      }
+
+      .nav-links {
+        display: none; /* simplificación móvil */
+      }
+
+      .hero {
+        padding-top: 2.3rem;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .form-row {
+        flex-direction: column;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
 <body>
-  <!-- CABECERA / NAV -->
-  <header class="header">
+  <header>
     <div class="container nav">
       <a href="#inicio" class="logo">
-        <!-- Si tienes el logo como imagen, úsalo aquí -->
-        <img src="logo-cleannova.png" alt="Logo CleanNova Home Services" class="logo-img" />
-        <!-- Fallback por si no hay imagen -->
+        <div class="logo-icon">
+          <span>CN</span>
+        </div>
         <div class="logo-text">
           <span class="logo-main">CleanNova</span>
           <span class="logo-sub">Home Services</span>
@@ -54,7 +640,7 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container hero-grid">
-        <div class="hero-copy">
+        <div>
           <div class="hero-badge">
             Limpiezas a fondo en toda la provincia de Barcelona
           </div>
@@ -96,7 +682,7 @@
     </section>
 
     <!-- SERVICIOS -->
-    <section id="servicios" class="section">
+    <section id="servicios">
       <div class="container">
         <div class="section-header">
           <h2>Servicios de limpiezas a fondo</h2>
@@ -162,7 +748,7 @@
     </section>
 
     <!-- TARIFAS -->
-    <section id="tarifas" class="section section-alt">
+    <section id="tarifas" class="section-alt">
       <div class="container pricing">
         <div class="section-header">
           <h2>Tarifas orientativas</h2>
@@ -205,7 +791,7 @@
     </section>
 
     <!-- ZONAS -->
-    <section id="zonas" class="section">
+    <section id="zonas">
       <div class="container">
         <div class="section-header">
           <h2>Zonas de trabajo</h2>
@@ -242,7 +828,7 @@
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="section section-alt">
+    <section id="contacto" class="section-alt">
       <div class="container contact-grid">
         <div>
           <div class="section-header">
@@ -277,7 +863,7 @@
           </div>
           <div class="form-group">
             <label for="mensaje">Qué necesitas limpiar</label>
-            <textarea id="mensaje" placeholder="M2 aproximados, número de habitaciones, si es fin de obra, cambio de inquilino, etc."></textarea>
+            <textarea id="mensaje" placeholder="M² aproximados, número de habitaciones, si es fin de obra, cambio de inquilino, etc."></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-full">Enviar (ejemplo, sin envío real)</button>
           <p class="form-note">
