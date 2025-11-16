@@ -5,25 +5,44 @@
   <title>CleanNova Home Services | Limpiezas a fondo en provincia de Barcelona</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Limpiezas a fondo profesionales en toda la provincia de Barcelona. Servicios desde 120 € por vivienda. Pide tu presupuesto sin compromiso." />
+
+  <!-- SEO básico -->
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="CleanNova Home Services" />
+
+  <!-- Open Graph / compartir -->
+  <meta property="og:title" content="CleanNova Home Services | Limpiezas a fondo en provincia de Barcelona" />
+  <meta property="og:description" content="Especialistas en limpiezas a fondo completas: mudanzas, fin de obra, cambio de inquilino. Provincia de Barcelona." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://tudominio.com" />
+  <meta property="og:image" content="https://tudominio.com/logo-cleannova.png" />
+
+  <!-- Favicon y fuentes -->
+  <link rel="icon" type="image/png" href="logo-cleannova.png" />
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <!-- CABECERA / NAV -->
   <header class="header">
     <div class="container nav">
-      <div class="logo">
-        <div class="logo-icon">CN</div>
+      <a href="#inicio" class="logo">
+        <!-- Si tienes el logo como imagen, úsalo aquí -->
+        <img src="logo-cleannova.png" alt="Logo CleanNova Home Services" class="logo-img" />
+        <!-- Fallback por si no hay imagen -->
         <div class="logo-text">
           <span class="logo-main">CleanNova</span>
           <span class="logo-sub">Home Services</span>
         </div>
-      </div>
+      </a>
+
       <nav class="nav-links">
         <a href="#servicios">Servicios</a>
         <a href="#tarifas">Tarifas</a>
         <a href="#zonas">Zonas</a>
         <a href="#contacto">Contacto</a>
       </nav>
+
       <div class="nav-cta">
         <a class="btn btn-outline" href="tel:+34601536313">Llamar</a>
         <a class="btn btn-primary" href="#contacto">Pedir presupuesto</a>
@@ -31,13 +50,13 @@
     </div>
   </header>
 
-  <main>
+  <main id="inicio">
     <!-- HERO -->
     <section class="hero">
       <div class="container hero-grid">
-        <div>
+        <div class="hero-copy">
           <div class="hero-badge">
-            ✨ Limpiezas a fondo en toda la provincia de Barcelona
+            Limpiezas a fondo en toda la provincia de Barcelona
           </div>
           <h1>Limpieza a fondo para que <span>tu casa vuelva a brillar</span></h1>
           <p class="hero-text">
@@ -48,11 +67,13 @@
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#contacto">Quiero un presupuesto</a>
-            <a class="btn btn-ghost" href="https://wa.me/34601536313" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+            <a class="btn btn-ghost" href="https://wa.me/34601536313" target="_blank" rel="noopener">
+              Escríbeme por WhatsApp
+            </a>
           </div>
           <div class="hero-meta">
-            <span>✅ Precio mínimo orientativo: <strong>120 € por limpieza</strong></span>
-            <span>✅ Personal profesional y de confianza</span>
+            <span>Precio mínimo orientativo: <strong>120 € por limpieza</strong></span>
+            <span>Personal profesional y de confianza</span>
           </div>
         </div>
 
@@ -158,7 +179,7 @@
             <ul>
               <li>Metros cuadrados y número de estancias.</li>
               <li>Estado general de la vivienda (tiempo sin limpiar, obra reciente, etc.).</li>
-              <li>Servicios extra: cristales, interiores, electrodomésticos, persianas…</li>
+              <li>Servicios extra: cristales, interiores, electrodomésticos, persianas.</li>
               <li>Ubicación dentro de la provincia de Barcelona.</li>
             </ul>
             <p>
@@ -200,7 +221,7 @@
             <ul class="zones-list">
               <li>Barcelona ciudad (todos los distritos).</li>
               <li>L’Hospitalet de Llobregat, Badalona, Santa Coloma.</li>
-              <li>Cornellà, Esplugues, Sant Just, Sant Joan Despí…</li>
+              <li>Cornellà, Esplugues, Sant Just, Sant Joan Despí.</li>
             </ul>
           </div>
           <div class="card">
