@@ -87,17 +87,6 @@
       overflow: hidden;
     }
 
-    .logo-icon::before {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      background: #0f172a;
-      opacity: 0.1;
-      transform: rotate(20deg);
-    }
-
     .logo-icon span {
       font-size: 1.1rem;
       font-weight: 700;
@@ -580,14 +569,18 @@
     }
 
     @media (max-width: 720px) {
+      header {
+        position: static;
+      }
+
       .nav {
         flex-wrap: wrap;
         justify-content: center;
-        padding: 0.4rem 0;
+        padding: 0.4rem 0.5rem;
       }
 
       .nav-links {
-        display: none; /* simplificación móvil */
+        display: none; /* Menú simplificado en móvil */
       }
 
       .hero {
@@ -844,32 +837,31 @@
             <p><strong>Email:</strong> <a href="mailto:cleannovahomeservices@gmail.com">cleannovahomeservices@gmail.com</a></p>
             <p><strong>Horario orientativo:</strong> Lunes a viernes de 9:00 a 19:00</p>
           </div>
+          <p class="form-note">
+            Al enviar el formulario se abrirá tu aplicación de correo para finalizar el envío.
+          </p>
         </div>
 
-        <form class="contact-form">
+        <form class="contact-form" onsubmit="enviarFormulario(event)">
           <div class="form-row">
             <div class="form-group">
               <label for="nombre">Nombre</label>
-              <input id="nombre" type="text" placeholder="Tu nombre" />
+              <input id="nombre" type="text" required placeholder="Tu nombre" />
             </div>
             <div class="form-group">
               <label for="localidad">Localidad</label>
-              <input id="localidad" type="text" placeholder="Ej. Badalona, Vilafranca..." />
+              <input id="localidad" type="text" required placeholder="Ej. Badalona, Vilafranca..." />
             </div>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" type="email" placeholder="tucorreo@example.com" />
+            <input id="email" type="email" required placeholder="tucorreo@example.com" />
           </div>
           <div class="form-group">
             <label for="mensaje">Qué necesitas limpiar</label>
-            <textarea id="mensaje" placeholder="M² aproximados, número de habitaciones, si es fin de obra, cambio de inquilino, etc."></textarea>
+            <textarea id="mensaje" required placeholder="M² aproximados, número de habitaciones, si es fin de obra, cambio de inquilino, etc."></textarea>
           </div>
-          <button type="submit" class="btn btn-primary btn-full">Enviar (ejemplo, sin envío real)</button>
-          <p class="form-note">
-            Este formulario es solo una maqueta. Cuando publiques la web podrás conectar
-            este formulario a tu correo o a un gestor de formularios.
-          </p>
+          <button type="submit" class="btn btn-primary btn-full">Enviar solicitud</button>
         </form>
       </div>
     </section>
@@ -884,6 +876,29 @@
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Hace el formulario "funcional" usando mailto (GitHub Pages no permite backend)
+    function enviarFormulario(event) {
+      event.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      const localidad = document.getElementById("localidad").value;
+      const email = document.getElementById("email").value;
+      const mensaje = document.getElementById("mensaje").value;
+
+      const asunto = "Solicitud de presupuesto - CleanNova";
+      const cuerpo =
+        "Nombre: " + nombre + "\\n" +
+        "Localidad: " + localidad + "\\n" +
+        "Email: " + email + "\\n\\n" +
+        "Qué necesita limpiar:\\n" + mensaje;
+
+      const mailtoLink =
+        "mailto:cleannovahomeservices@gmail.com" +
+        "?subject=" + encodeURIComponent(asunto) +
+        "&body=" + encodeURIComponent(cuerpo);
+
+      window.location.href = mailtoLink;
+    }
   </script>
 </body>
 </html>
