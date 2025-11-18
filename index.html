@@ -1132,6 +1132,111 @@
         });
       }
     })();
-  </script>
-</body>
-</html>
+ <script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Formulario con mailto
+  function enviarFormulario(event) {
+    event.preventDefault();
+    const nombre = document.getElementById("nombre").value;
+    const localidad = document.getElementById("localidad").value;
+    const email = document.getElementById("email").value;
+    const mensaje = document.getElementById("mensaje").value;
+
+    const asunto = "Solicitud de presupuesto - CleanNova";
+    const cuerpo =
+      "Nombre: " + nombre + "\n" +
+      "Localidad: " + localidad + "\n" +
+      "Email: " + email + "\n\n" +
+      "Qué necesita limpiar:\n" + mensaje;
+
+    const mailtoLink =
+      "mailto:cleannovahomeservices@gmail.com" +
+      "?subject=" + encodeURIComponent(asunto) +
+      "&body=" + encodeURIComponent(cuerpo);
+
+    window.location.href = mailtoLink;
+  }
+
+  // Chatbot n8n
+  (function () {
+    const WEBHOOK_URL = "https://n8n-n8n.3asuar.easypanel.host/webhook/e816ccb2-9ecf-4fbc-a83f-a516b7436ff8/chat";
+
+    // 🔹 Generamos un sessionId y lo guardamos en localStorage para que la memoria funcione
+    let sessionId = localStorage.getItem("cleannovaChatSessionId");
+    if (!sessionId) {
+      sessionId = "web_" + Date.now() + "_" + Math.random().toString(16).slice(2);
+      localStorage.setItem("cleannovaChatSessionId", sessionId);
+    }
+
+    const chatToggle = document.getElementById("chat-toggle");
+    const chatWindow = document.getElementById("chat-window");
+    const chatClose = document.getElementById("chat-close");
+    const chatForm = document.getElementById("chat-form");
+    const chatInput = document.getElementById("chat-input");
+    const chatMessages = document.getElementById("chat-messages");
+
+    function appendMessage(sender, text) {
+      if (!text) return;
+      const div = document.createElement("div");
+      div.className = "chat-message " + (sender === "bot" ? "bot" : "user");
+      div.textContent = text;
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    if (chatToggle && chatWindow) {
+      chatToggle.addEventListener("click", function () {
+        chatWindow.classList.add("is-open");
+        chatToggle.style.display = "none";
+      });
+    }
+
+    if (chatClose && chatWindow && chatToggle) {
+      chatClose.addEventListener("click", function () {
+        chatWindow.classList.remove("is-open");
+        chatToggle.style.display = "inline-flex";
+      });
+    }
+
+    if (chatForm && chatInput) {
+      chatForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const text = chatInput.value.trim();
+        if (!text) return;
+
+        appendMessage("user", text);
+        chatInput.value = "";
+
+        // 🔹 Enviamos el formato que espera el Chat Trigger de n8n
+        fetch(WEBHOOK_URL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            sessionId: sessionId,   // para la memoria
+            chatInput: text         // mensaje del usuario
+          })
+        })
+          .then(async function (response) {
+            let data;
+            try {
+              data = await response.json();
+            } catch (e) {
+              const txt = await response.text();
+              appendMessage("bot", txt || "He recibido tu mensaje. Te responderemos en breve.");
+              return;
+            }
+
+            // El Chat Trigger suele devolver 'text' o 'output'
+            const reply = data.text || data.output || data.reply || data.message || JSON.stringify(data);
+            appendMessage("bot", reply);
+          })
+          .catch(function () {
+            appendMessage("bot", "Ha ocurrido un error al enviar tu mensaje. Inténtalo de nuevo más tarde.");
+          });
+      });
+    }
+  })();
+</script>
