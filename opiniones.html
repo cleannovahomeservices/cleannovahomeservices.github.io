@@ -98,7 +98,7 @@
 
       <div class="review-grid">
         <div>
-          <div id="reviews-list" class="grid3"></div>
+          <div id="reviews-list" class="reviews-stack"></div>
         </div>
 
         <div class="card tile">
@@ -106,6 +106,9 @@
           <h3>Deja tu reseña</h3>
           <p class="note">Tu reseña se guardará y podrá mostrarse aquí. (Puedes adjuntar una foto opcional.)</p>
 
+          <button id="toggle-review-form" class="btn outline btn-small" type="button">Escribir reseña</button>
+
+          <div id="review-form-wrap" style="display:none;margin-top:.9rem">
           <form id="review-form" class="form" style="margin-top:.9rem">
             <div class="field">
               <label for="review-nombre">Nombre</label>
@@ -135,6 +138,7 @@
             </div>
             <button class="btn primary" type="submit">Enviar reseña</button>
           </form>
+          </div>
         </div>
       </div>
 
